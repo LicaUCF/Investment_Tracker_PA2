@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Purchase Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="course-label">COP 5818 - Web Application Practice</p>
+      <h1>Investment Purchase Tracker</h1>
+      <p>Record what you bought and how much you invested.</p>
+    </div>
+  </header>
+
+  <main class="container page-layout">
+    <!-- ACCOUNT PANEL -->
+    <section class="panel auth" aria-labelledby="auth-heading">
+      <h2 id="auth-heading">Account</h2>
+      <form id="auth-form" novalidate>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" required placeholder="name@example.com">
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input id="password" type="password" minlength="8" maxlength="128" required placeholder="At least 8 characters">
+        </div>
+        <div class="auth-buttons">
+          <button id="login-button" type="submit" class="submit-button">Log in</button>
+          <button id="register-button" type="button" class="submit-button secondary-btn">Register</button>
+          <button id="logout-button" type="button" class="submit-button logout-btn">Log out</button>
+        </div>
+      </form>
+      <p id="account-status" class="hint" style="margin-top: 12px; font-weight: bold;"></p>
+    </section>
+
+    <!-- TRACKER PANEL (Hidden until authenticated) -->
+    <div id="tracker-panel" hidden style="display: contents;">
+      <section class="panel summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Purchase summary</h2>
+        <div class="balance-card">
+          <h3>Total invested</h3>
+          <p id="total-invested" class="balance-value">$0.00</p>
+        </div>
+
+        <div class="total-card">
+          <h3>Number of purchases</h3>
+          <p id="purchase-count" class="total-value">0</p>
+        </div>
+
+        <p class="hint">Purchase cost = quantity x price per unit.</p>
+        <p class="hint">All prices are in USD. Totals represent purchase costs, not current market values. Fees are not included.</p>
+      </section>
+
+      <section class="panel entry" aria-labelledby="entry-heading">
+        <h2 id="entry-heading">Add a purchase</h2>
+        <form id="purchase-form" novalidate>
+          <div class="form-field">
+            <label for="investment-name">Investment name</label>
+            <input id="investment-name" maxlength="100" required placeholder="For example: Example Index Fund">
+          </div>
+          <div class="form-field">
+            <label for="category">Category</label>
+            <select id="category" required class="form-select">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="quantity">Quantity</label>
+            <input id="quantity" type="number" min="1" max="10000" step="1" required placeholder="For example: 5" aria-describedby="quantity-help">
+            <p id="quantity-help" class="hint">For this exercise, enter 1-10,000 whole units.</p>
+          </div>
+          <div class="form-field">
+            <label for="unit-price">Unit price in USD</label>
+            <input id="unit-price" type="number" min="0.01" max="1000000" step="0.01" required placeholder="For example: 20.00" aria-describedby="price-help">
+            <p id="price-help" class="hint">Enter a positive price up to $1,000,000, with at most two decimal places.</p>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+            <button id="save-button" type="submit" class="submit-button">Add purchase</button>
+            <button id="cancel-edit" type="button" class="submit-button secondary-btn">Cancel edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel purchases" aria-labelledby="history-heading">
+        <h2 id="history-heading">Purchase history</h2>
+        <p class="hint">Each entry shows the investment, category, quantity, price per unit, and purchase cost. Repeat purchases appear as separate entries.</p>
+        <ul id="purchase-list" class="purchase-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <p id="message" role="status" aria-live="polite" class="container" style="font-weight: bold; margin-top: 15px;"></p>
+
+  <footer class="site-footer container">
+    <p>Practice with fictional purchases. Secured with SQLite, sessions, and CSRF protection.</p>
+  </footer>
+</body>
+</html>
