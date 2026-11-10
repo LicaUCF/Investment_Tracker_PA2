@@ -1,4 +1,12 @@
-# Investment Purchase Tracker - PA2
+#Investment Purchase Tracker | Full-Stack Web App
+
+# a secure, multi-user investment tracking web application using JavaScript (Node.js/Express) and SQLite
+
+# Implements user authentication with Argon2id password hashing, secure session cookies, and CSRF protection to ensure strict data privacy and authorization.
+
+#I designed a relational database schema with parameterized queries to prevent SQL injection and maintain persistent records and built a responsive frontend interface with dynamic form handling, asynchronous API requests (fetch), and robust server-side input validation.# Investment Purchase Tracker - PA2
+
+#below are class instructions with my solutions and implementations
 
 ## Part 1: Add Purchase Action Flow
 1. **Browser Event**: The user submits the purchase form; JavaScript intercepts the submission via `submit` event listener and calls `event.preventDefault()`.
